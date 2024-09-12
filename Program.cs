@@ -42,8 +42,9 @@ foreach (var ember in emberek)
 {
     korok.Add(ember.Age);
 }
-Console.WriteLine($"A fájlban szereplő személyek átlagos életkora: {Math.Round(korok.Average(),2)} év.");
+Console.WriteLine($"A fájlban szereplő személyek átlagos életkora: {Math.Round(korok.Average(), 2)} év.");
 Console.WriteLine();
+
 //4. Feladat
 List<string> kutyaSorok = File.ReadAllLines("dogs.csv").ToList();
 List<Pet> kutyak = new();
