@@ -43,9 +43,24 @@ foreach (var ember in emberek)
     korok.Add(ember.Age);
 }
 Console.WriteLine($"A fájlban szereplő személyek átlagos életkora: {Math.Round(korok.Average(),2)} év.");
-
+Console.WriteLine();
 //4. Feladat
-
+List<string> kutyaSorok = File.ReadAllLines("dogs.csv").ToList();
+List<Pet> kutyak = new();
+foreach (var sor in kutyaSorok)
+{
+    kutyak.Add(new Pet(sor));
+}
+People mostDogOwned = emberek.First();
+foreach (var ember in emberek)
+{
+    if (kutyak.Count(x => x.Owner_Id == ember.ID) > kutyak.Count(x => x.Owner_Id == mostDogOwned.ID))
+    {
+        mostDogOwned = ember;
+    }
+}
+Console.WriteLine("4. Feladat");
+Console.WriteLine($"{mostDogOwned.Full_Name} has {kutyak.Count(x => x.Owner_Id == mostDogOwned.ID)} dogs");
 
 //2. Feladat
 static class StringExtensions
