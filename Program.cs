@@ -1,4 +1,6 @@
-﻿//1. Feladat
+﻿using _1Feladat;
+//1. Feladat
+
 List<string> sorok = new();
 sorok = File.ReadAllLines("input.txt").ToList();
 int joSorokSzama = 0;
@@ -10,19 +12,39 @@ foreach (var sor in sorok)
     }
 }
 Console.WriteLine($"1. Feladat: {joSorokSzama}");
+Console.WriteLine();
 
 //2. Feladat
 Console.WriteLine("2. Feladat");
 Console.WriteLine("(())".isValid());
 Console.WriteLine("))((".isValid());
+Console.WriteLine();
 
 //3. Feladat
+List<string> emberSorok = File.ReadAllLines("people.csv").ToList();
+List<People> emberek = new();
+foreach (var sor in emberSorok)
+{
+    emberek.Add(new People(sor));
+}
+Console.WriteLine("3. Feladat:");
+People legFiatalabb = emberek.First(x => x.Age == emberek.Min(x => x.Age));
+Console.WriteLine("Legfiatalabb személy: ");
+Console.WriteLine($"{legFiatalabb.Full_Name}, {legFiatalabb.Age} éves");
+Console.WriteLine("---");
+People legOregebb = emberek.First(x => x.Age == emberek.Max(x => x.Age));
+Console.WriteLine("Legidősebb személy: ");
+Console.WriteLine($"{legOregebb.Full_Name}, {legOregebb.Age} éves");
+Console.WriteLine("---");
 
+List<int> korok = new();
+foreach (var ember in emberek)
+{
+    korok.Add(ember.Age);
+}
+Console.WriteLine($"A fájlban szereplő személyek átlagos életkora: {Math.Round(korok.Average(),2)} év.");
 
-
-
-
-
+//4. Feladat
 
 
 //2. Feladat
